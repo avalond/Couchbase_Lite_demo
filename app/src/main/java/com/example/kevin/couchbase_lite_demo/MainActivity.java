@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
   private final String TAG = MainActivity.class.getSimpleName();
   private TextView mTextView;
   private Manager mManager;
@@ -26,11 +27,13 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     mTextView = (TextView) findViewById(R.id.text);
+
     try {
       mManager = new Manager(new AndroidContext(DemoApplication.getContext()), Manager.DEFAULT_OPTIONS);
     } catch (IOException e) {
       e.printStackTrace();
     }
+
     try {
       mDatabase = mManager.getDatabase("order");
     } catch (CouchbaseLiteException e) {
@@ -46,9 +49,11 @@ public class MainActivity extends AppCompatActivity {
     } catch (CouchbaseLiteException e) {
       e.printStackTrace();
     }
+
     mTextView.setText(document.getProperty("restaurantId") + "<-->" + document.getProperty("orderId"));
     LoggerUtils.d(TAG, document.getId());
     LoggerUtils.d(TAG, (String) document.getProperty("restaurantId"));
     LoggerUtils.d(TAG, (String) document.getProperty("orderId"));
+
   }
 }
