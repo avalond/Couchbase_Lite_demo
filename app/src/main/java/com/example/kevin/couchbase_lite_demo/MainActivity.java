@@ -21,15 +21,13 @@ public class MainActivity extends AppCompatActivity {
   private Database mDatabase;
 
 
-
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     mTextView = (TextView) findViewById(R.id.text);
     try {
-      mManager = new Manager(new AndroidContext(getApplicationContext()), Manager.DEFAULT_OPTIONS);
+      mManager = new Manager(new AndroidContext(DemoApplication.getContext()), Manager.DEFAULT_OPTIONS);
     } catch (IOException e) {
       e.printStackTrace();
     }
